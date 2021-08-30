@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="76dp"
         android:text="@string/all_tasks"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -20,23 +21,27 @@
         app:layout_constraintVertical_bias="0.661" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="124dp"
-        android:layout_height="75dp"
+        android:id="@+id/TextViewUserName"
+        android:layout_width="145dp"
+        android:layout_height="33dp"
         android:autofillHints="My Task"
         android:text="@string/my_tasks"
+        android:textColor="#D51710"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.174"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <Button
         android:id="@+id/addtask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_task"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.208"
@@ -46,17 +51,87 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="206dp"
-        android:layout_height="216dp"
+        android:layout_width="215dp"
+        android:layout_height="215dp"
         android:layout_marginStart="89dp"
         android:layout_marginEnd="116dp"
         android:contentDescription="@string/todo1"
+        android:src="@drawable/cutepotato"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.351"
-        android:src="@drawable/cutepotato" />
+        app:layout_constraintVertical_bias="0.302" />
+
+    <Button
+        android:id="@+id/angrypotato"
+        android:layout_width="215dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#43B1AD"
+        android:text="@string/angry_potato"
+        android:textColor="#0C0C0C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.424"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.783" />
+
+    <Button
+        android:id="@+id/sadpotato"
+        android:layout_width="215dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#43B1AD"
+        android:text="@string/sad_potato"
+        android:textColor="#0C0C0C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.423"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.876" />
+
+    <Button
+        android:id="@+id/potatoking"
+        android:layout_width="215dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#43B1AD"
+        android:text="@string/potato_king"
+        android:textColor="#0C0C0C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.423"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.961" />
+
+    <TextView
+        android:id="@+id/userNameTextViewMainActivity"
+        android:layout_width="236dp"
+        android:layout_height="35dp"
+        android:text="@string/choose_your_potato"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.434"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.678" />
+
+    <Button
+        android:id="@+id/SettingsActivityBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00BCD4"
+        android:text="@string/go_to_settings"
+        android:textColor="#070707"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.936"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.092" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
