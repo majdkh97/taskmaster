@@ -35,3 +35,17 @@
 
 #### Settings Page Activity 
 ![image description](screenshots/Lab27/SettingsPageActivity.png)
+
+
+
+### Lab 28
+
+#### Main Activity + button click(goes to detail page)
+#### Task1
+![image description](screenshots/Lab28/MainActivity1.png)
+![image description](screenshots/Lab28/DetailsActivity1.png)
+
+#### Main Activity + button click(goes to detail page)
+#### Task2
+![image description](screenshots/Lab28/MainActivity2.png)
+![image description](screenshots/Lab28/DetailsActivity2.png)

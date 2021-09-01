@@ -1,6 +1,8 @@
 package com.example.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +24,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        //Creating some data for RecyclerView Lab28
+        ArrayList<Task> allTasksData = new ArrayList<>();
+        allTasksData.add(new Task("Task1","do task1","in-progress"));
+        allTasksData.add(new Task("Task2","do task2","in-progress"));
+        allTasksData.add(new Task("Task3","do task3","in-progress"));
+
+        //get the recycler view Lab28
+        RecyclerView allTasksRecyclerView = findViewById(R.id.taskListRecyclerView);
+        //set layout manager for this view Lab28
+        allTasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //set adapter for this recycler view Lab28
+        allTasksRecyclerView.setAdapter(new TaskAdapter(allTasksData));
+
 
         Button addTask = MainActivity.this.findViewById(R.id.addtask);
         Button allTasks = MainActivity.this.findViewById(R.id.alltask);
@@ -42,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         String btn1Text = taskDetailPageActivityBtn1.getText().toString();
         String btn2Text = taskDetailPageActivityBtn2.getText().toString();
         String btn3Text = taskDetailPageActivityBtn3.getText().toString();
+
 
         taskDetailPageActivityBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         addTask.setOnClickListener(view -> {
             Intent goToAddTask = new Intent(MainActivity.this,AddTask.class);
             startActivity(goToAddTask);
@@ -101,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
             Intent goToAllTasks = new Intent(MainActivity.this,AllTasks.class);
             startActivity(goToAllTasks);
         });
+
     }
 
     @Override

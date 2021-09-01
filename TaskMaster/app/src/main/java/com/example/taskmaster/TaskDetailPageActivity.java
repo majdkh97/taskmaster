@@ -16,17 +16,17 @@ public class TaskDetailPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail_page);
 
-        ImageView img =findViewById(R.id.TaskDetailImageView);
+//        ImageView img =findViewById(R.id.TaskDetailImageView);
 
         Intent intent = getIntent();
         String taskName = intent.getExtras().getString("taskName");
         TextView taskNameView = findViewById(R.id.TaskDetailName);
         taskNameView.setText(taskName);
 
-        Bundle extras = getIntent().getExtras();
-        byte[] b = extras.getByteArray("picture");
-        Bitmap bmp = BitmapFactory.decodeByteArray(b, 0, b.length);
-        img.setImageBitmap(bmp);
+//        Bundle extras = getIntent().getExtras();
+//        byte[] b = extras.getByteArray("picture");
+//        Bitmap bmp = BitmapFactory.decodeByteArray(b, 0, b.length);
+//        img.setImageBitmap(bmp);
 
     }
 }
