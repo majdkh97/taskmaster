@@ -31,6 +31,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public TaskViewHolder(@NonNull @org.jetbrains.annotations.NotNull View itemView) {
             super(itemView);
             this.itemView=itemView;
+
             itemView.findViewById(R.id.GoToDetailFragment).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -40,15 +41,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                 }
             });
 
-            itemView.findViewById(R.id.TaskFragment).setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent goToDetailPageActivity = new Intent(view.getContext(),TaskDetailPageActivity.class);
                     goToDetailPageActivity.putExtra("taskName",task.title);
+                    goToDetailPageActivity.putExtra("taskBody",task.body);
+                    goToDetailPageActivity.putExtra("taskStatus",task.state);
                     view.getContext().startActivity(goToDetailPageActivity);
                 }
             });
-
         }
     }
 

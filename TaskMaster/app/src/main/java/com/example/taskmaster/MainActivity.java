@@ -3,6 +3,7 @@ package com.example.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,12 +28,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        //Creating some data for RecyclerView Lab28
-        ArrayList<Task> allTasksData = new ArrayList<>();
-        allTasksData.add(new Task("Task1","do task1","in-progress"));
-        allTasksData.add(new Task("Task2","do task2","in-progress"));
-        allTasksData.add(new Task("Task3","do task3","in-progress"));
-
+        TaskDatabase taskDB = Room.databaseBuilder(getApplicationContext(), TaskDatabase.class, "TaskDatabase").allowMainThreadQueries().build();
+        TaskDao taskDao = taskDB.taskDao();
+        List<Task> allTasksData = taskDao.getTaskList();
         //get the recycler view Lab28
         RecyclerView allTasksRecyclerView = findViewById(R.id.taskListRecyclerView);
         //set layout manager for this view Lab28
