@@ -61,20 +61,17 @@ public class MainActivity extends AppCompatActivity {
         String btn3Text = taskDetailPageActivityBtn3.getText().toString();
 
 
-        taskDetailPageActivityBtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goToTaskDetailPageActivity = new Intent(MainActivity.this,TaskDetailPageActivity.class);
-                goToTaskDetailPageActivity.putExtra("taskName",btn1Text);
+        taskDetailPageActivityBtn1.setOnClickListener(view -> {
+            Intent goToTaskDetailPageActivity = new Intent(MainActivity.this,TaskDetailPageActivity.class);
+            goToTaskDetailPageActivity.putExtra("taskName",btn1Text);
 
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.angrypotato);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                byte[] b = baos.toByteArray();
-                goToTaskDetailPageActivity.putExtra("picture",b);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.angrypotato);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            byte[] b = baos.toByteArray();
+            goToTaskDetailPageActivity.putExtra("picture",b);
 
-                startActivity(goToTaskDetailPageActivity);
-            }
+            startActivity(goToTaskDetailPageActivity);
         });
 
         taskDetailPageActivityBtn2.setOnClickListener(new View.OnClickListener() {
