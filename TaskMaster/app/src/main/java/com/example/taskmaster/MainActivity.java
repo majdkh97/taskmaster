@@ -1,5 +1,6 @@
 package com.example.taskmaster;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,29 +11,71 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+
 import java.io.ByteArrayOutputStream;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import com.amplifyframework.datastore.generated.model.Task;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        TaskDatabase taskDB = Room.databaseBuilder(getApplicationContext(), TaskDatabase.class, "TaskDatabase").allowMainThreadQueries().build();
-        TaskDao taskDao = taskDB.taskDao();
-        List<Task> allTasksData = taskDao.getTaskList();
-        //get the recycler view Lab28
         RecyclerView allTasksRecyclerView = findViewById(R.id.taskListRecyclerView);
+        Handler handler = new Handler(Looper.getMainLooper(), new Handler.Callback() {
+            @Override
+            public boolean handleMessage(@NonNull Message message) {
+                allTasksRecyclerView.getAdapter().notifyDataSetChanged();
+                return false;
+            }
+        });
+
+        try {
+            // Add these lines to add the AWSApiPlugin plugins
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i("MyAmplifyApp", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+        }
+
+        List<Task> allTasksData = new ArrayList<>();
+        Amplify.API.query(
+                ModelQuery.list(Task.class),
+                response -> {
+                    for (Task task : response.getData()) {
+                        Log.i("MyAmplifyApp", task.getTitle());
+                        allTasksData.add(task);
+                    }
+                    handler.sendEmptyMessage(1);
+                },
+                error -> Log.e("MyAmplifyApp", "Query failure", error)
+        );
+
+
+
+//        TaskDatabase taskDB = Room.databaseBuilder(getApplicationContext(), TaskDatabase.class, "TaskDatabase").allowMainThreadQueries().build();
+//        TaskDao taskDao = taskDB.taskDao();
+//        List<Task> allTasksData = taskDao.getTaskList();
+        //get the recycler view Lab28
+//        RecyclerView allTasksRecyclerView = findViewById(R.id.taskListRecyclerView);
         //set layout manager for this view Lab28
         allTasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         //set adapter for this recycler view Lab28
