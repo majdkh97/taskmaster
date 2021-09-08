@@ -5,10 +5,15 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Task;
 
 public class AddTask extends AppCompatActivity {
 
@@ -29,9 +34,20 @@ public class AddTask extends AppCompatActivity {
                 String taskTitle=titleET.getText().toString();
                 String taskBody =bodyET.getText().toString();
 
-                TaskDatabase taskDB = Room.databaseBuilder(getApplicationContext(),TaskDatabase.class,"TaskDatabase").allowMainThreadQueries().build();
-                Task task = new Task(taskTitle,taskBody,"new");
-                taskDB.taskDao().insertTask(task);
+                Task todo = Task.builder()
+                        .title(taskTitle)
+                        .description(taskBody)
+                        .status("new")
+                        .build();
+
+                Amplify.API.mutate(ModelMutation.create(todo),
+                        response -> Log.i("MyAmplifyApp", "Todo with id: " + response.getData().getId()),
+                        error -> Log.e("MyAmplifyApp", "Create failed", error)
+                );
+
+//                TaskDatabase taskDB = Room.databaseBuilder(getApplicationContext(),TaskDatabase.class,"TaskDatabase").allowMainThreadQueries().build();
+//                Task task = new Task(taskTitle,taskBody,"new");
+//                taskDB.taskDao().insertTask(task);
                 Toast.makeText(getApplicationContext(),"submitted!",Toast.LENGTH_LONG).show();
                 Intent i = new Intent(AddTask.this,MainActivity.class);
                 startActivity(i);
