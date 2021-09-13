@@ -1,3 +1,4 @@
+
 package com.example.taskmaster;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,10 @@ import android.widget.TextView;
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUserAttributeKey;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthSession;
+import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 
 import java.io.ByteArrayOutputStream;
@@ -46,15 +51,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        try {
-            // Add these lines to add the AWSApiPlugin plugins
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.configure(getApplicationContext());
 
-            Log.i("MyAmplifyApp", "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
-        }
+
+        Amplify.Auth.fetchUserAttributes(
+                attributes -> Log.i("AuthDemo", "User attributes = " + attributes.get(attributes.size()-1).getValue()),
+                error -> Log.e("AuthDemo", "Failed to fetch user attributes.", error)
+        );
+
 
         List<Task> allTasksData = new ArrayList<>();
         Amplify.API.query(
@@ -94,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        String userName= Amplify.Auth.getCurrentUser().getUsername();
+        TextView userNameView = findViewById(R.id.userNameTextViewMainActivity);
+        String welcomeMessage = "Welcome " + userName;
+        userNameView.setText(welcomeMessage);
 
         Button taskDetailPageActivityBtn1 = MainActivity.this.findViewById(R.id.angrypotato);
         Button taskDetailPageActivityBtn2 = MainActivity.this.findViewById(R.id.sadpotato);
@@ -159,17 +166,31 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToAllTasks);
         });
 
+        Button signOutBtn = findViewById(R.id.SignOutBtn);
+        signOutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Amplify.Auth.signOut(
+                        () -> {
+                            Log.i("AuthQuickstart", "Signed out successfully");
+                            Intent goBackToSignInActivity = new Intent(MainActivity.this,SignIn.class);
+                            startActivity(goBackToSignInActivity);
+                        },
+                        error -> Log.e("AuthQuickstart", error.toString())
+                );
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        String userName = sharedPreferences.getString("userName","username");
-
-        TextView userNameView = findViewById(R.id.userNameTextViewMainActivity);
-        String welcomeMessage = "Welcome " + userName;
-        userNameView.setText(welcomeMessage);
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+//        String userName = sharedPreferences.getString("userName","username");
+//
+//        TextView userNameView = findViewById(R.id.userNameTextViewMainActivity);
+//        String welcomeMessage = "Welcome " + userName;
+//        userNameView.setText(welcomeMessage);
     }
 }

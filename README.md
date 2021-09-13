@@ -67,3 +67,22 @@
 #### Detail Activity
 
 ![image description](screenshots/Lab29/DetailsActivity.png)
+
+### Lab36
+
+#### Sign-in Activity
+
+![image description](screenshots/Lab36/signinactivity.png)
+
+#### Sign-up Activity
+
+![image description](screenshots/Lab36/signupactivity.png)
+
+#### Confirmation Activity
+
+![image description](screenshots/Lab36/confirmationactivity.png)
+
+#### Main Activity
+
+![image description](screenshots/Lab36/mainactivity.png)
+
