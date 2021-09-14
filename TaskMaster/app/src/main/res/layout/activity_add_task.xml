@@ -11,7 +11,7 @@
         android:layout_width="156dp"
         android:layout_height="45dp"
         android:layout_marginStart="59dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="259dp"
         android:text="@string/add_task"
         android:textSize="34sp"
@@ -26,67 +26,91 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="159dp"
         android:ems="10"
         android:hint="please enter title"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="42dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="158dp"
-        android:layout_marginBottom="98dp"
-        android:ems="10"
-        android:hint="please enter description"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText1" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="186dp"
         android:layout_height="79dp"
         android:layout_marginStart="59dp"
-        android:layout_marginEnd="237dp"
-        android:layout_marginBottom="232dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="167dp"
         android:backgroundTint="#79D5E1"
         android:text="@string/add_taskBtn"
         android:textColor="#0E0E0E"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.239"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupteam" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="157dp"
         android:layout_height="43dp"
-        android:layout_marginStart="71dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="254dp"
-        android:layout_marginBottom="145dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="183dp"
         android:text="@string/total_tasks_0"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupteam"
+        android:layout_width="116dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="192dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2">
+
+        <RadioButton
+            android:id="@+id/Team1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="team1" />
+
+        <RadioButton
+            android:id="@+id/Team2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="team2" />
+
+        <RadioButton
+            android:id="@+id/Team3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="team3" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="159dp"
+        android:ems="10"
+        android:hint="please enter description"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
