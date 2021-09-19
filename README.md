@@ -86,3 +86,10 @@
 
 ![image description](screenshots/Lab36/mainactivity.png)
 
+### Lab38
+
+#### Notifications
+
+We used Amplify in conjunction with firebase cloud messaging to send notifications
+
+![image description](screenshots/Lab38/Notifications.png)
